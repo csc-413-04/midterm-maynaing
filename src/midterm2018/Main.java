@@ -1,5 +1,10 @@
 package midterm2018;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -28,17 +33,69 @@ public class Main {
 
         // Question 1
         // Return the Host
+        System.out.println("\nHost:");
+        System.out.println(getHost(question1and2));
 
         // Question 2
         // return sum of a and b
+        System.out.println("\nSum:");
+        //System.out.println(totalSum(question1and2));
 
         // Question 3
         // convert to java object, increment num, convert back to json and return
 
         // Question 4
         // return unique words
+        System.out.println("\nUnique Words:");
+
+        Scanner scan = new Scanner(question4and5);
+        HashMap<String, Integer> map = new HashMap<>();
+        while (scan.hasNext()) {
+            String word = scan.next();
+            int countWord = 0;
+            if (!map.containsKey(word)) {
+                map.put(word, 1);
+            }
+            else {
+                countWord = map.get(word) + 1;
+                map.remove(word);
+                map.put(word, countWord);
+            }
+        }
+
+        System.out.println(map.size());
 
         // Question 5
         // return 2nd most common word
+
     }
+
+    public static String getHost(String q1and2) {
+        String host = q1and2;
+        int index = host.indexOf("Host: ");
+
+        if (index != 0) {
+            host = host.substring(index + 6);
+        }
+
+        index = host.indexOf("\n");
+
+        if (index != -1) {
+            host = host.substring(0, index);
+        }
+
+        return host;
+    }
+
+    /*
+    public static int totalSum(String q1and2) {
+        String sumString = q1and2;
+
+        int sum = Integer.parseInt(sumString.replaceAll("[\\D]", ""));
+
+        return 0;
+    }
+    */
+
+
 }
